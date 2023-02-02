@@ -1,3 +1,4 @@
+from enum import Flag
 import os                             # N'enlevez pas ces lignes.
 os.chdir(os.path.dirname(__file__))   # Elles permettent de se positionner dans le répertoire de ce script
 
@@ -10,18 +11,22 @@ os.chdir(os.path.dirname(__file__))   # Elles permettent de se positionner dans 
 # Et imprimer dans le terminal le résultat ainsi "J'ai eu un total de 788502 likes pour mes 3 vidéos"
 # Naturellement, le nombre de likes total et le nombre de vidéos sont des données calculées
 
-
 # Observez le contenu du fichier txt et notez le caractère spécial qui sépare les données
 # Si vous êtes fort en programmation, faites le code maintenant
 # Si vous avez besoin de plus d'explications, vous pourrez les trouver plus bas dans cet exercice
-
-
-
-
-
-
-
-
+with open('Ex1_youtube_Nb_Likes.txt', 'r') as Video:
+    Readable = True
+    ListeLike = []
+    while Readable:
+        Line = Video.readline()
+        if  Line == '':
+            Readable = False;
+        else:
+            ListeLike.append(Line.rstrip('\n').split('|'))
+Likes = 0
+for i in ListeLike:
+    Likes = Likes + int(i[len(i)-1])
+print(Likes)
 
 
 
