@@ -1,4 +1,5 @@
 from logging.config import listen
+from math import fabs
 import os                             # N'enlevez pas ces lignes.
 os.chdir(os.path.dirname(__file__))   # Elles permettent de se positionner dans le répertoire de ce script
 #
@@ -21,16 +22,14 @@ os.chdir(os.path.dirname(__file__))   # Elles permettent de se positionner dans 
 # Si vous en ressentez le besoin, il y a des explications plus détaillées dans le bas de ce document
 DepenseJanvier = 0
 with open('Ex2_Depenses_Janvier.txt', 'r') as Depenses:
-    mois = ''
-    line = Depenses.readline()
-    ListeDepenses = []
-    if line == '-*':
-        mois = line
-    else:
-        ListeDepenses.append(line.split(':'))
-        
-print(ListeDepenses)
-print(mois)
+    yes = Depenses.readlines()
+no = []
+for i in yes:
+    no.append(i.lstrip('\t').rstrip('\n').split(':'))
+print(no)
+with open('Ex2_Total_Janvier.txt','w') as helpme:
+    helpme.writelines('    MOIS    TOTAL\n')
+    helpme.writelines(f"""   {no[0][0].rstrip(' 2022')}    {int(no[1][1].lstrip(''))+int(no[2][1].lstrip(''))+int(no[3][1].lstrip(''))+int(no[4][1].lstrip(''))} """)
 
 
 
