@@ -18,6 +18,19 @@ os.chdir(os.path.dirname(__file__))   # Elles permettent de se positionner dans 
 #   - ouvrir en écriture un nouveau fichier que vous appellerez contributeursPublics.csv
 #   - Avec une boucle for, vous allez lire chaque ligne du premier fichier pour ensuite l'écrire dans le deuxième fichier
 #     MAIS vous allez arrêter la copie quand au lieu du nom d'une personne, vous aurez 'Pas de publication'
+with open('Ex3_contributeursNomPrenom.csv', 'r',encoding='utf=8') as man:
+    Readable = True
+    helpme = []
+    while Readable:
+        Line = man.readline().rstrip('\n')
+        if Line == 'Pas de publication, Pas sur le site Web':
+            Readable = False
+        else:
+            helpme.append(Line)
+with open('contributeursPublics.csv','w',encoding='utf-8') as help:
+    for i in helpme:
+        help.writelines(i+'\n')
+    
 
 
 
